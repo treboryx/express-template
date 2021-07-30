@@ -17,21 +17,22 @@
 
 <script>
 export default {
-  asyncData ({ params, error, $http }) {
-    return $http.$get('/api/users/' + params.id)
-      .then((res) => {
-        return { user: res }
+  asyncData({ params, error, $axios }) {
+    return $axios
+      .$get("/api/users/" + params.id)
+      .then(res => {
+        return { user: res };
       })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'User not found' })
-      })
+      .catch(e => {
+        error({ statusCode: 404, message: "User not found" });
+      });
   },
-  head () {
+  head() {
     return {
       title: `User: ${this.user.name}`
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>
@@ -43,19 +44,16 @@ export default {
   align-items: center;
   text-align: center;
 }
-.title
-{
+.title {
   margin-top: 30px;
 }
-.info
-{
+.info {
   font-weight: 300;
   color: #9aabb1;
   margin: 0;
   margin-top: 10px;
 }
-.button
-{
+.button {
   margin-top: 30px;
 }
 </style>
